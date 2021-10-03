@@ -1,0 +1,141 @@
+let explorationDeck = [
+  {
+    src: "assets/exploration_deck/exploration(14).png",
+    black: 340,
+    grey: 733,
+    red: 243,
+    green: 865,
+    blue: 72,
+    options: [canIgnore, canEnd, this.optionA, this.optionB],
+    optionA: returnExplorationCards(1),
+    optionB: rollNoise(),
+    reward: resolveFindings("special", 1)
+  },
+  {
+    src: "assets/exploration_deck/exploration(15).png",
+    black: 178,
+    grey: 709,
+    red: 596,
+    green: 103,
+    blue: 6,
+    unexpected: function() {
+      let color = drawColor();
+      //function that warns to check the number with the drawn color on the location card
+      //place this card under current location, only shuffle back into deck when location is removed
+    }
+  },
+  {
+    src: "assets/exploration_deck/exploration(16).png",
+    unexpected: function() {
+      let color = drawColor();
+      let text = drawText();
+      read(color, text);
+    }
+  },
+  {
+    src: "assets/exploration_deck/exploration(17).png",
+    black: 982,
+    grey: 251,
+    red: 716,
+    green: 460,
+    blue: 163,
+    unexpected: mapCheck("rubble"),
+    options: [this.optionA],
+    optionA: function() = {
+      //function that warns that this action can only be done if you have a shovel, action triggers reward
+      returnExplorationCards(1);
+      noiseValue += 1;
+      rollNoise();
+    },
+    reward: function() = {
+        addCard(5);
+        resolveFindings("heap", 2);
+    }
+  },
+  {
+    src: "assets/exploration_deck/exploration(18).png",
+    black: 171,
+    grey: 695,
+    red: 807,
+    green: 49,
+    blue: 364,
+    private: true,
+    options: [canIgnore, canEnd, this.optionA, this.optionB],
+    optionA: returnExplorationCards(2),
+    optionB: function() = {
+      noiseValue += 1;
+      rollNoise();
+    },
+    reward: resolveFindings("furniture", 1)
+  },
+  {
+    src: "assets/exploration_deck/exploration(19).png",
+    black: 771,
+    grey: 302,
+    red: 979,
+    green: 68,
+    blue: 120,
+    options: [canIgnore, canEnd, this.optionA, this.optionB],
+    optionA: returnExplorationCards(2),
+    optionB: function() = {
+      noiseValue +=  1;
+      rollNoise();
+    },
+    reward: resolveFindings("furniture", 1)
+  },
+  {
+    src: "assets/exploration_deck/exploration(20).png",
+    black: 606,
+    grey: 433,
+    red: 74,
+    green: 767,
+    blue: 234,
+    options: [canIgnore, canEnd, this.optionA, this.optionB],
+    optionA: function() = {
+      returnExplorationCards(2);
+      noiseValue +=  1;
+    },
+    optionB: function() = {
+      noiseValue +=  1;
+      rollNoise();
+    },
+    reward: resolveFindings("heap", 1)
+  },
+  {
+    src: "assets/exploration_deck/exploration(21).png",
+    black: 53,
+    grey: 917,
+    red: 128,
+    green: 259,
+    blue: 730,
+    options: [canIgnore, canEnd, this.optionA, this.optionB],
+    optionA: function() = {
+      returnExplorationCards(2);
+      noiseValue +=  1;
+    },
+    optionB: function() = {
+      noiseValue +=  1;
+      rollNoise();
+    },
+    reward: resolveFindings("heap", 1)
+  },
+  {
+    src: "assets/exploration_deck/exploration(21).png",
+    black: 504,
+    grey: 115,
+    red: 561,
+    green: 797,
+    blue: 888,
+    private: true,
+    options: [canIgnore, canEnd, this.optionA, this.optionB],
+    optionA: function() = {
+      returnExplorationCards(2);
+      noiseValue +=  1;
+    },
+    optionB: function() = {
+      noiseValue +=  1;
+      rollNoise();
+    },
+    reward: resolveFindings("heap", 1)
+  },
+]
